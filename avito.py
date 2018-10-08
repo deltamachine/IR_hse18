@@ -1,25 +1,10 @@
 import os
 import re
 import time
-import socks
-import socket
+from random import uniform
 from lxml.html import fromstring
 from lxml.html.clean import Cleaner
-import requests
 from urllib.request import Request, urlopen
-
-
-"""def request(link):
-    proxies = {
-    'http': 'http://91.202.240.208:39592',
-    'https': 'https://91.202.240.208:39592'
-    }
-
-    html = requests.get(link, proxies=proxies).text
-
-    html = re.sub('\n', '     ', html)
-
-    return html"""
 
 
 def request(link):
@@ -57,7 +42,8 @@ def clean_text(text):
 
 def find_ads(num):
     link = 'https://www.avito.ru/moskva/chasy_i_ukrasheniya?p=%s' % (num)
-    time.sleep(5)
+    sleep = uniform(0.0, 5.0)
+    time.sleep(sleep)
     html = request(link)
     links = re.findall('<a class="item-description-title-link"[ \n]*itemprop="url"[ \n]*href="(.*?)"[ \n]*title="(.*?)">', html)
     links = [elem[0] for elem in links]
@@ -81,7 +67,7 @@ def collect_links_on_ads(main_html):
 
     i = 2
 
-    while len(all_links) < 10 and i <= int(last_page):
+    while len(all_links) < 15000:
         current_links = find_ads(i)
         current_links = create_full_links(current_links)
         all_links += current_links
@@ -135,7 +121,8 @@ def collect_adv_data(link):
 
 def create_corpus(all_links):
     for i, link in enumerate(all_links):
-        time.sleep(5)
+        sleep = uniform(0.0, 5.0)
+        time.sleep(sleep)
         data = collect_adv_data(link)
         
         if data != {}:
@@ -164,7 +151,7 @@ def main():
     main_html = request(main_link)
 
     all_links = collect_links_on_ads(main_html)
-    all_links = all_links[:10]
+    all_links = all_links[:10000]
 
     create_corpus(all_links)
 
