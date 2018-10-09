@@ -67,11 +67,16 @@ def collect_links_on_ads(main_html):
 
     i = 2
 
-    while len(all_links) < 15000:
-        current_links = find_ads(i)
-        current_links = create_full_links(current_links)
-        all_links += current_links
-        i += 1
+    while len(all_links) < 10000:
+        try:
+            current_links = find_ads(i)
+            current_links = create_full_links(current_links)
+            all_links += current_links
+            i += 1
+        except:
+            continue
+
+    all_links = all_links[:10000]
 
     with open('all_links.txt', 'w', encoding='utf-8') as file:
         for l in all_links:
@@ -131,7 +136,13 @@ def create_corpus(all_links):
 
 
 def save_data(link, data):
-    link = link.strip('https://www.avito.ru/moskva/chasy_i_ukrasheniya/')
+    link = re.sub('.*/', '', link)
+
+    keys = ['title', 'number', 'date', 'price', 'seller', 'address', 'description']
+
+    for key in keys:
+        if key not in data.keys():
+            data[key] = ' '
     
     with open('%s.txt' % (link), 'w', encoding='utf-8') as file:
         file.write('title: %s\n' % (data['title']))
@@ -149,10 +160,7 @@ def main():
 
     main_link = 'https://www.avito.ru/moskva/chasy_i_ukrasheniya'
     main_html = request(main_link)
-
     all_links = collect_links_on_ads(main_html)
-    all_links = all_links[:10000]
-
     create_corpus(all_links)
 
 
