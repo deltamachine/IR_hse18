@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Поисковик</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="static/base.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+    	  document.addEventListener('DOMContentLoaded', function() {
+    	  	M.AutoInit();
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+    </script>
+</head>
+
+<body>
+<!-- 	<div class="navbar-fixed">
+	    <nav class="main-navbar" style="background-color: #4ca497 !important;">
+	        <div class="nav-wrapper">           
+	            <ul id="nav-mobile" class="left hide-on-med-and-down" style="margin-left: 8%;">
+	                 <li><a class="main-menu-items" href="" style="font-size: 1.2rem;">Рассчитать калорийность блюда</a></li>
+	                 <li><a class="main-menu-items" href="" style="font-size: 1.2rem;">Добавить ингредиент в базу</a></li>
+	            </ul>
+	        </div>
+	    </nav>
+	</div> -->
+
+    <div class="row header-row" style="padding-top: 5%; margin-top: 5%;">
+	    <div class="col s1"></div>
+
+	    <div class="col s10 header-col">
+	        <center><h4 style="line-height: 4rem; color: #4ca497; font-family: 'Pony'";>MyLittleSearchSystem</h4></center>
+	    </div>
+
+	    <div class="col s1"></div>
+	</div>
+
+
+	<div class="row" style="padding-bottom: 2%;">
+		<div class="col s1"></div>
+		<div class="col s1"></div>
+		
+		<div class="col s8" style="padding-top: 3%;">
+			<form>
+			<div class="row">
+				<div class="col s10">
+					<center>
+						<div class="input-field" style="box-shadow: 0 0 10px #e2e2e2!important; margin-bottom: 2%; margin-top: 0px !important;">
+				          <input placeholder="Введите запрос" name="search_for" type="text" class="validate" style="margin-bottom: 0px; margin-top: 0px; border-bottom: none; width: 90%;">
+				        </div>
+			    	</center>
+
+					<p>
+						<input type="radio" name="search_mode" value="ii" id="ii"/>
+  						<label for="ii">Обратный индекс</label>
+					</p>
+
+					<p>
+						<input type="radio" name="search_mode" value="w2v" id="w2v"/>
+  						<label for="w2v">Word2Vec</label>
+					</p>
+
+					<p>
+						<input type="radio" name="search_mode" value="d2v" id="d2v"/>
+  						<label for="d2v">Doc2Vec</label>
+					</p>
+				</div>
+
+			    <div class="col s2" style="height: 100%;">
+					<input type="submit" class="waves-effect waves-light btn" type="submit" value="Искать" style="height: 44px; padding-top: 3%;">
+				</div>
+			</div>
+			</form>
+		</div>
+		<div class="col s1"></div>
+		<div class="col s1"></div>
+	</div>
+
+
+</body>
+</html>

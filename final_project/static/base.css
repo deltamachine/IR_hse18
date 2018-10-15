@@ -1,0 +1,19 @@
+@font-face {
+	font-family: 'Montserrat';
+	src: url('fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat-Bold';
+	src: url('fonts/Montserrat-SemiBold.ttf');
+}
+
+
+@font-face {
+	font-family: 'Pony';
+	src: url('fonts/Pony.ttf');
+}
+
+body {
+	font-family: 'Montserrat';
+}
